@@ -762,9 +762,12 @@ open class PieRadarChartViewBase: ChartViewBase
         
         _decelerationLastTime = currentTime
         
-        if(abs(_decelerationAngularVelocity) < 0.001)
+        if(abs(_decelerationAngularVelocity) < 0.01)
         {
             stopDeceleration()
+            if delegate != nil {
+                delegate?.chartViewRotationDidStop?(self)
+            }
         }
     }
     

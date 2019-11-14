@@ -307,6 +307,10 @@ class DemoBaseViewController: UIViewController, ChartViewDelegate {
     func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
         
     }
+    
+    func chartViewRotationDidStop(_ chartView: ChartViewBase) {
+        NSLog("Rotation did stop")
+    }
 }
 
 extension DemoBaseViewController: UITableViewDelegate, UITableViewDataSource {
