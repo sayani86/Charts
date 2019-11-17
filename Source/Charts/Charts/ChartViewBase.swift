@@ -48,6 +48,10 @@ public protocol ChartViewDelegate
     
     // Callbacks when rotation gestures stop
     @objc optional func chartViewRotationDidStop(_ chartView: ChartViewBase)
+    
+    @objc optional func chartViewRotationTouchBegan(_ chartView: ChartViewBase)
+
+    @objc optional func chartViewRotationTouchEnd(_ chartView: ChartViewBase)
 }
 
 open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate

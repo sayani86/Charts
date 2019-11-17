@@ -762,9 +762,10 @@ open class PieRadarChartViewBase: ChartViewBase
         
         _decelerationLastTime = currentTime
         
-        if(abs(_decelerationAngularVelocity) < 0.01)
+        if(abs(_decelerationAngularVelocity) < 0.1)
         {
             stopDeceleration()
+            
             if delegate != nil {
                 delegate?.chartViewRotationDidStop?(self)
             }
@@ -811,6 +812,10 @@ open class PieRadarChartViewBase: ChartViewBase
             stopDeceleration()
             
             _startAngle = self.rawRotationAngle
+            
+            if self.delegate != nil {
+                self.delegate?.chartViewRotationTouchEnd?(self)
+            }
         }
         
         if recognizer.state == NSUIGestureRecognizerState.began || recognizer.state == NSUIGestureRecognizerState.changed
@@ -826,6 +831,10 @@ open class PieRadarChartViewBase: ChartViewBase
             
             self.rotationAngle = _startAngle + angle
             setNeedsDisplay()
+            
+            if self.delegate != nil {
+                self.delegate?.chartViewRotationTouchEnd?(self)
+            }
             
             if isDragDecelerationEnabled
             {
